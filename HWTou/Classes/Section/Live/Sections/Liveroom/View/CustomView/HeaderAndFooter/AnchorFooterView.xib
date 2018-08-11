@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AnchorFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruO-Cq-jPa">
+                    <rect key="frame" x="40" y="621" width="50" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="5y5-FD-uSC"/>
+                        <constraint firstAttribute="width" constant="50" id="TI3-gC-wE1"/>
+                    </constraints>
+                    <state key="normal" image="gl_btn_m"/>
+                    <connections>
+                        <action selector="voiceAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="cTp-7O-UIg"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RfJ-A2-Ile">
+                    <rect key="frame" x="130" y="621" width="50" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="6FB-sQ-J71"/>
+                        <constraint firstAttribute="height" constant="45" id="UWW-b8-Mhj"/>
+                    </constraints>
+                    <state key="normal" image="gl_btn_lm"/>
+                    <connections>
+                        <action selector="interactAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Kjh-8a-FW9"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA2-o3-oIY">
+                    <rect key="frame" x="163" y="621" width="50" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="gl_btn_yx"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Moc-W9-1Gx">
+                    <rect key="frame" x="220" y="621" width="50" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Rum-RE-w7R"/>
+                        <constraint firstAttribute="width" constant="50" id="hbD-q1-pon"/>
+                    </constraints>
+                    <state key="normal" image="gl_btn_bgm"/>
+                    <connections>
+                        <action selector="bmgMusicAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="YeN-ws-N8n"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LV-ka-erD">
+                    <rect key="frame" x="310" y="621" width="50" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="0mY-N3-q3G"/>
+                        <constraint firstAttribute="width" constant="50" id="Oot-rv-Tcl"/>
+                    </constraints>
+                    <state key="normal" image="gl_btn_gd"/>
+                    <connections>
+                        <action selector="moreAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="R2p-68-bUD"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Moc-W9-1Gx" firstAttribute="leading" secondItem="RfJ-A2-Ile" secondAttribute="trailing" constant="40" id="1fk-kC-ZoC"/>
+                <constraint firstAttribute="bottom" secondItem="1LV-ka-erD" secondAttribute="bottom" constant="1" id="3CY-r8-WxM"/>
+                <constraint firstItem="ruO-Cq-jPa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="PDL-QC-gFb"/>
+                <constraint firstItem="RfJ-A2-Ile" firstAttribute="leading" secondItem="ruO-Cq-jPa" secondAttribute="trailing" constant="40" id="RmF-kh-sB1"/>
+                <constraint firstItem="1LV-ka-erD" firstAttribute="leading" secondItem="Moc-W9-1Gx" secondAttribute="trailing" constant="40" id="kC8-tE-zCr"/>
+                <constraint firstAttribute="bottom" secondItem="ruO-Cq-jPa" secondAttribute="bottom" constant="1" id="me6-Uf-HZj"/>
+                <constraint firstAttribute="bottom" secondItem="Moc-W9-1Gx" secondAttribute="bottom" constant="1" id="vvT-QF-3SZ"/>
+                <constraint firstAttribute="bottom" secondItem="RfJ-A2-Ile" secondAttribute="bottom" constant="1" id="ygr-Bl-dxG"/>
+            </constraints>
+            <connections>
+                <outlet property="bmgMusicBtn" destination="Moc-W9-1Gx" id="tao-Be-jkN"/>
+                <outlet property="interactBtn" destination="RfJ-A2-Ile" id="76c-fi-V1c"/>
+                <outlet property="moreBtn" destination="1LV-ka-erD" id="2i5-Mx-OJZ"/>
+                <outlet property="voiceBtn" destination="ruO-Cq-jPa" id="f9y-vT-oKg"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="gl_btn_bgm" width="50" height="45"/>
+        <image name="gl_btn_gd" width="50" height="45"/>
+        <image name="gl_btn_lm" width="50" height="45"/>
+        <image name="gl_btn_m" width="50" height="45"/>
+        <image name="gl_btn_yx" width="50" height="45"/>
+    </resources>
+</document>

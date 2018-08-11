@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddresseeListViewController">
+            <connections>
+                <outlet property="tableView" destination="tfb-PL-if1" id="dEi-ha-CXg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tfb-PL-if1">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWa-Er-5BE">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <color key="backgroundColor" red="0.67843137249999996" green="0.0" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="新增收件人">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="addAddressAction:" destination="-1" eventType="touchUpInside" id="Ntr-wX-cCE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="tfb-PL-if1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FoK-HQ-2JR"/>
+                <constraint firstItem="pWa-Er-5BE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HZ5-PW-vqU"/>
+                <constraint firstAttribute="bottom" secondItem="tfb-PL-if1" secondAttribute="bottom" constant="50" id="NyR-xt-uyQ"/>
+                <constraint firstAttribute="trailing" secondItem="tfb-PL-if1" secondAttribute="trailing" id="YBE-zl-YGv"/>
+                <constraint firstItem="pWa-Er-5BE" firstAttribute="top" secondItem="tfb-PL-if1" secondAttribute="bottom" id="bz4-vA-4IT"/>
+                <constraint firstItem="tfb-PL-if1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ftq-pd-uvq"/>
+                <constraint firstAttribute="trailing" secondItem="pWa-Er-5BE" secondAttribute="trailing" id="od0-ub-Pyw"/>
+                <constraint firstAttribute="bottom" secondItem="pWa-Er-5BE" secondAttribute="bottom" id="x40-8o-CYc"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

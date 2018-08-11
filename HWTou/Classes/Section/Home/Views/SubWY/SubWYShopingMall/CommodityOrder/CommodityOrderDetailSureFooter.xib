@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CommodityOrderDetailSureFooter">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jw0-1P-C3k">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="XgE-nK-bEr"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPc-DP-W5r">
+                    <rect key="frame" x="307" y="0.0" width="68" height="40"/>
+                    <color key="backgroundColor" red="0.67843137249999996" green="0.0" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="68" id="T20-Ri-16n"/>
+                        <constraint firstAttribute="height" constant="40" id="kNE-1E-fu4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="确认收货">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="sureAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Y86-ah-mCN"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.95294117647058818" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Jw0-1P-C3k" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1Jv-rp-E3a"/>
+                <constraint firstAttribute="trailing" secondItem="pPc-DP-W5r" secondAttribute="trailing" id="YuE-2H-LWa"/>
+                <constraint firstItem="Jw0-1P-C3k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cYv-gW-Jzl"/>
+                <constraint firstAttribute="trailing" secondItem="Jw0-1P-C3k" secondAttribute="trailing" id="sjD-4R-Wgf"/>
+                <constraint firstItem="pPc-DP-W5r" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uKk-El-AnR"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

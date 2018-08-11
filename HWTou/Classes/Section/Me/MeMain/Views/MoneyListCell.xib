@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MoneyListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="62.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soy-UH-dek">
+                        <rect key="frame" x="15" y="10" width="37.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifE-rK-SEZ">
+                        <rect key="frame" x="15" y="38" width="31" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIj-oJ-PRK">
+                        <rect key="frame" x="257" y="19.5" width="48" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" red="0.52549019607843139" green="0.52549019607843139" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mil-EG-PAB">
+                        <rect key="frame" x="0.0" y="62" width="320" height="0.5"/>
+                        <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="v7n-V2-NmS"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Soy-UH-dek" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="7DL-09-2a7"/>
+                    <constraint firstItem="Soy-UH-dek" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Fz7-Xk-q1q"/>
+                    <constraint firstAttribute="bottom" secondItem="Mil-EG-PAB" secondAttribute="bottom" id="Q9O-hw-kwv"/>
+                    <constraint firstItem="ifE-rK-SEZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="QBD-8P-V4h"/>
+                    <constraint firstAttribute="trailing" secondItem="Mil-EG-PAB" secondAttribute="trailing" id="WWT-zb-L0f"/>
+                    <constraint firstItem="gIj-oJ-PRK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dUM-KB-EQO"/>
+                    <constraint firstAttribute="trailing" secondItem="gIj-oJ-PRK" secondAttribute="trailing" constant="15" id="fUM-a7-Goa"/>
+                    <constraint firstItem="Mil-EG-PAB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jad-Vm-MfG"/>
+                    <constraint firstItem="ifE-rK-SEZ" firstAttribute="top" secondItem="Soy-UH-dek" secondAttribute="bottom" constant="10" id="wjC-tc-z0B"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="moneyInfoLab" destination="Soy-UH-dek" id="Bck-RR-CH6"/>
+                <outlet property="moneyNumLab" destination="gIj-oJ-PRK" id="Gbc-Hd-qCE"/>
+                <outlet property="timeLab" destination="ifE-rK-SEZ" id="Jwn-AZ-Ihu"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

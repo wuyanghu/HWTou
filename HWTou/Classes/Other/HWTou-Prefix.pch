@@ -1,0 +1,35 @@
+//
+//  HWTou-Prefix.pch
+//  HWTou
+//
+//  Created by robinson on 2018/3/12.
+//  Copyright © 2018年 LieMi. All rights reserved.
+//
+
+#ifndef HWTou_Prefix_h
+#define HWTou_Prefix_h
+
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <NIMSDK/NIMSDK.h>
+#import <NIMAVChat/NIMAVChat.h>
+#import "NTESGlobalMacro.h"
+#import "NIMKit.h"
+
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
+#ifdef DEBUG
+static DDLogLevel ddLogLevel = DDLogLevelVerbose;
+#else
+static DDLogLevel ddLogLevel = DDLogLevelInfo;
+#endif
+
+#define NTES_USE_CLEAR_BAR - (BOOL)useClearBar{return YES;}
+
+#define NTES_FORBID_INTERACTIVE_POP - (BOOL)forbidInteractivePop{return YES;}
+
+#endif
+
+#endif /* HWTou_Prefix_h */

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SpecalMusicView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVW-yU-92T">
+                    <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIA-19-MLO">
+                            <rect key="frame" x="6" y="25" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="etW-iI-2jv"/>
+                                <constraint firstAttribute="height" constant="50" id="uy7-b3-awt"/>
+                            </constraints>
+                            <state key="normal" image="popups_cancel"/>
+                            <connections>
+                                <action selector="closeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="tva-LY-HpN"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Uw-1I-XYk">
+                            <rect key="frame" x="64" y="33.5" width="2" height="33"/>
+                            <color key="backgroundColor" red="0.44736343622207642" green="0.45099335908889771" blue="0.45097202062606812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="33" id="1pw-xR-uyg"/>
+                                <constraint firstAttribute="width" constant="2" id="rPh-Eb-bKo"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="9Uw-1I-XYk" firstAttribute="leading" secondItem="AIA-19-MLO" secondAttribute="trailing" constant="8" id="3Gd-Xh-OxJ"/>
+                        <constraint firstItem="AIA-19-MLO" firstAttribute="leading" secondItem="mVW-yU-92T" secondAttribute="leading" constant="6" id="8aP-cH-Fd4"/>
+                        <constraint firstItem="AIA-19-MLO" firstAttribute="centerY" secondItem="mVW-yU-92T" secondAttribute="centerY" id="F4U-7J-SKU"/>
+                        <constraint firstItem="9Uw-1I-XYk" firstAttribute="centerY" secondItem="AIA-19-MLO" secondAttribute="centerY" id="NpF-jo-S60"/>
+                        <constraint firstAttribute="height" constant="100" id="r4W-nK-O1U"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="mVW-yU-92T" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1Mg-6l-Lwh"/>
+                <constraint firstAttribute="trailing" secondItem="mVW-yU-92T" secondAttribute="trailing" id="3dr-Dm-oeZ"/>
+                <constraint firstAttribute="bottom" secondItem="mVW-yU-92T" secondAttribute="bottom" id="nQJ-TV-8kM"/>
+            </constraints>
+            <connections>
+                <outlet property="scrollView" destination="mVW-yU-92T" id="lXm-Hb-HmY"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="popups_cancel" width="49" height="50"/>
+    </resources>
+</document>

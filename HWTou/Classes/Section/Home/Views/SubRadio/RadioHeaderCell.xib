@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="RadioHeaderCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="124.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radiobroadcast_localstation-1" translatesAutoresizingMaskIntoConstraints="NO" id="hPT-zf-6wB" userLabel="Image View_1">
+                        <rect key="frame" x="19.5" y="31" width="41" height="41"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radiobroadcast_national" translatesAutoresizingMaskIntoConstraints="NO" id="JTq-1X-geN" userLabel="Image View_2">
+                        <rect key="frame" x="99.5" y="31" width="41" height="41"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="broadcast_provinces" translatesAutoresizingMaskIntoConstraints="NO" id="EsR-xl-QqG" userLabel="Image View_3">
+                        <rect key="frame" x="179.5" y="31" width="41" height="41"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="broadcast_network" translatesAutoresizingMaskIntoConstraints="NO" id="bnd-3d-Xxn" userLabel="Image View_4">
+                        <rect key="frame" x="259.5" y="31" width="41" height="41"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交通台" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIQ-CK-kvK" userLabel="Label_1">
+                        <rect key="frame" x="19" y="80" width="43" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.41568627450980389" green="0.21568627450980393" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="方言台" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqc-tz-8to" userLabel="Label_2">
+                        <rect key="frame" x="99" y="80" width="43" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.41568627450980389" green="0.21568627450980393" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本地台" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhL-1a-Hfg" userLabel="Label_3">
+                        <rect key="frame" x="179" y="80" width="43" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.41568627450980389" green="0.21568627450980393" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文艺台" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN7-Lu-AJC" userLabel="Label_4">
+                        <rect key="frame" x="259" y="80" width="43" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.41568627450980389" green="0.21568627450980393" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8R-oj-c3d" userLabel="Btn_1">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="124.5"/>
+                        <connections>
+                            <action selector="headerTypeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BXh-NZ-5aa"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dje-iQ-1EG" userLabel="Btn_2">
+                        <rect key="frame" x="80" y="0.0" width="80" height="124.5"/>
+                        <connections>
+                            <action selector="headerTypeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5dQ-C9-6iO"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzp-io-vPh" userLabel="Btn_3">
+                        <rect key="frame" x="160" y="0.0" width="80" height="124.5"/>
+                        <connections>
+                            <action selector="headerTypeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="R88-Wb-l5Y"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAk-m1-lGa" userLabel="Btn_4">
+                        <rect key="frame" x="240" y="0.0" width="80" height="124.5"/>
+                        <connections>
+                            <action selector="headerTypeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eI8-0H-SnU"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rzp-io-vPh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0cI-8o-00g"/>
+                    <constraint firstAttribute="bottom" secondItem="rzp-io-vPh" secondAttribute="bottom" id="69w-kN-VRM"/>
+                    <constraint firstItem="dje-iQ-1EG" firstAttribute="width" secondItem="r8R-oj-c3d" secondAttribute="width" id="8D8-Xx-RiS"/>
+                    <constraint firstItem="dje-iQ-1EG" firstAttribute="centerX" secondItem="JTq-1X-geN" secondAttribute="centerX" id="8WZ-OI-h4r"/>
+                    <constraint firstItem="rzp-io-vPh" firstAttribute="leading" secondItem="dje-iQ-1EG" secondAttribute="trailing" id="By2-ft-ex4"/>
+                    <constraint firstItem="aN7-Lu-AJC" firstAttribute="top" secondItem="bnd-3d-Xxn" secondAttribute="bottom" constant="8" id="ERv-up-l6R"/>
+                    <constraint firstItem="kAk-m1-lGa" firstAttribute="centerX" secondItem="bnd-3d-Xxn" secondAttribute="centerX" id="Fjx-an-H0j"/>
+                    <constraint firstItem="kAk-m1-lGa" firstAttribute="centerY" secondItem="bnd-3d-Xxn" secondAttribute="centerY" constant="11" id="GSq-9J-IsG"/>
+                    <constraint firstItem="rzp-io-vPh" firstAttribute="centerX" secondItem="EsR-xl-QqG" secondAttribute="centerX" id="Gsd-G2-yfr"/>
+                    <constraint firstItem="ZhL-1a-Hfg" firstAttribute="top" secondItem="EsR-xl-QqG" secondAttribute="bottom" constant="8" id="O86-oG-n3W"/>
+                    <constraint firstAttribute="bottom" secondItem="dje-iQ-1EG" secondAttribute="bottom" id="PDR-dD-Dm9"/>
+                    <constraint firstItem="kAk-m1-lGa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="QhZ-EQ-fhF"/>
+                    <constraint firstItem="hPT-zf-6wB" firstAttribute="centerY" secondItem="r8R-oj-c3d" secondAttribute="centerY" constant="-11" id="VIG-Lw-NdG"/>
+                    <constraint firstItem="AIQ-CK-kvK" firstAttribute="top" secondItem="hPT-zf-6wB" secondAttribute="bottom" constant="8" id="Ze8-Pf-I3z"/>
+                    <constraint firstItem="hPT-zf-6wB" firstAttribute="centerX" secondItem="r8R-oj-c3d" secondAttribute="centerX" id="ZfG-a7-TWk"/>
+                    <constraint firstAttribute="trailing" secondItem="kAk-m1-lGa" secondAttribute="trailing" id="bi4-VD-NMt"/>
+                    <constraint firstItem="kAk-m1-lGa" firstAttribute="leading" secondItem="rzp-io-vPh" secondAttribute="trailing" id="emp-ql-TSh"/>
+                    <constraint firstItem="dje-iQ-1EG" firstAttribute="centerY" secondItem="JTq-1X-geN" secondAttribute="centerY" constant="11" id="hdg-9x-TuA"/>
+                    <constraint firstItem="kAk-m1-lGa" firstAttribute="centerX" secondItem="aN7-Lu-AJC" secondAttribute="centerX" id="ipm-BF-ipE"/>
+                    <constraint firstItem="rzp-io-vPh" firstAttribute="centerX" secondItem="ZhL-1a-Hfg" secondAttribute="centerX" id="jsh-YW-f2x"/>
+                    <constraint firstItem="rzp-io-vPh" firstAttribute="centerY" secondItem="EsR-xl-QqG" secondAttribute="centerY" constant="11" id="lEx-VW-yB8"/>
+                    <constraint firstItem="rzp-io-vPh" firstAttribute="width" secondItem="r8R-oj-c3d" secondAttribute="width" id="nCb-JW-E0G"/>
+                    <constraint firstItem="cqc-tz-8to" firstAttribute="centerX" secondItem="dje-iQ-1EG" secondAttribute="centerX" id="pd9-va-H7w"/>
+                    <constraint firstItem="r8R-oj-c3d" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sdL-TJ-bsF"/>
+                    <constraint firstItem="kAk-m1-lGa" firstAttribute="width" secondItem="r8R-oj-c3d" secondAttribute="width" id="tLX-aG-0Ls"/>
+                    <constraint firstAttribute="bottom" secondItem="r8R-oj-c3d" secondAttribute="bottom" id="trq-PM-Hw1"/>
+                    <constraint firstItem="AIQ-CK-kvK" firstAttribute="centerX" secondItem="r8R-oj-c3d" secondAttribute="centerX" id="vqP-LJ-FFa"/>
+                    <constraint firstItem="cqc-tz-8to" firstAttribute="top" secondItem="JTq-1X-geN" secondAttribute="bottom" constant="8" id="wGs-QU-A3X"/>
+                    <constraint firstItem="dje-iQ-1EG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yV3-eI-FIz"/>
+                    <constraint firstItem="r8R-oj-c3d" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yc4-aZ-ZlI"/>
+                    <constraint firstAttribute="bottom" secondItem="kAk-m1-lGa" secondAttribute="bottom" id="yvp-q6-bsn"/>
+                    <constraint firstItem="dje-iQ-1EG" firstAttribute="leading" secondItem="r8R-oj-c3d" secondAttribute="trailing" id="zCN-XC-8M0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="34" y="106.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="broadcast_network" width="41" height="41"/>
+        <image name="broadcast_provinces" width="41" height="41"/>
+        <image name="radiobroadcast_localstation-1" width="41" height="41"/>
+        <image name="radiobroadcast_national" width="41" height="41"/>
+    </resources>
+</document>
