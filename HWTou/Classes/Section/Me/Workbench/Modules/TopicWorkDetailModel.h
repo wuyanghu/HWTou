@@ -66,6 +66,8 @@ typedef NS_ENUM(NSInteger,buttonType) {
 @interface TopicLabelListModel : BaseModel
 @property (nonatomic,assign) NSInteger labelId;
 @property (nonatomic,copy) NSString * labelName;
+
+- (id)initWithLabelId:(NSString *)labelId labelName:(NSString *)labelName;
 @end
 
 @interface TopicBannerListModel : BaseModel

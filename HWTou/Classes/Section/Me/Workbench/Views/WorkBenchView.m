@@ -91,48 +91,8 @@
 
 - (NSArray *)dataArray{
     NSMutableArray * dataArray = [[NSMutableArray alloc] init];
-    if (_workType == workBenchType) {
-//        [dataArray addObject:@[@"我的话题",@"创建话题"]];
-        
-        if (self.detailModel.isChatAnchor == 1) {
-            NSArray * tempDataArr = @[@"我的聊吧",@"直播记录"];
-            [dataArray addObject:tempDataArr];
-            
-            NSArray * tempDataArr2 = @[@"我的收益"];
-            [dataArray addObject:tempDataArr2];
-        }
-        
-        if (self.detailModel.isChatM == 1) {
-            NSArray * tempDataArr = @[@"管理聊吧",@"永久禁言"];
-            [dataArray addObject:tempDataArr];
-        }
-        
-        if (self.detailModel.isChannelM == 1) {
-            NSArray * tempDataArr = @[@"管理广播"];
-            [dataArray addObject:tempDataArr];
-        }
-        
-    }else if (_workType == workBroadcastType){
-        [dataArray addObject:@"我的电台"];
-        if (!self.detailModel.isTopicM) {
-            [dataArray addObject:@"申请主播"];
-        }
-    }else if (_workType == workChatType){
-        if (self.detailModel.isChatAnchor == 1) {
-            [dataArray addObject:@[@"我的聊吧",@"直播记录"]];
-            
-            NSArray * tempDataArr2 = @[@"我的收益"];
-            [dataArray addObject:tempDataArr2];
-        }
-        
-        if (self.detailModel.isChatM == 1) {
-            NSArray * tempDataArr = @[@"管理聊吧",@"永久禁言"];
-            [dataArray addObject:tempDataArr];
-        }
-        
-    }
+    [dataArray addObject:@[@"我的电台",@"申请主播",@"我的话题",@"创建话题",@"我的聊吧",@"直播记录",@"我的收益",@"管理聊吧",@"永久禁言",@"我的聊吧",@"直播记录",@"管理广播"]];
     [dataArray addObject:@[@"聊吧主播使用手册"]];
-    
     _dataArray = dataArray;
     
     return _dataArray;

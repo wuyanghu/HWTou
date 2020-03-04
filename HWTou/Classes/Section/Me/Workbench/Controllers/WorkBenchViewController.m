@@ -16,7 +16,7 @@
 #import "MeChatViewController.h"
 #import "HistoryTopViewController.h"
 #import "ComFloorEvent.h"
-#import "LiveRecordViewController.h"
+//#import "LiveRecordViewController.h"
 #import "MuteListViewController.h"
 
 @interface WorkBenchViewController ()<WorkBenchViewDelegate>
@@ -64,8 +64,8 @@
         MuteListViewController * muteVC = [[MuteListViewController alloc] initWithNibName:@"MuteListViewController" bundle:nil];
         [self.navigationController pushViewController:muteVC animated:YES];
     }else if ([title isEqualToString:@"直播记录"]){
-        LiveRecordViewController * recordVC = [[LiveRecordViewController alloc] initWithNibName:@"LiveRecordViewController" bundle:nil];
-        [self.navigationController pushViewController:recordVC animated:YES];
+//        LiveRecordViewController * recordVC = [[LiveRecordViewController alloc] initWithNibName:@"LiveRecordViewController" bundle:nil];
+//        [self.navigationController pushViewController:recordVC animated:YES];
     }else if ([title isEqualToString:@"申请主播"]){
         [Navigation showExpertAnchorHtml5:self detailModel:_detailModel];
     }else if ([title isEqualToString:@"我的收益"]){

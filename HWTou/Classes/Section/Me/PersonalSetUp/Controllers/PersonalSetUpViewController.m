@@ -17,7 +17,7 @@
 #import "ModifyLoginPwdViewController.h"
 #import "ComFloorEvent.h"
 #import "PushManager.h"
-#import "ShieldViewController.h"
+//#import "ShieldViewController.h"
 #import "AddresseeListViewController.h"
 #import "QuickRegistrationViewController.h"
 
@@ -189,7 +189,7 @@
             [ComFloorEvent handleEventWithFloor:itemDM];
             break;}
         case PSFuncType_Shiled:{//屏蔽
-            vc = [[ShieldViewController alloc] init];
+//            vc = [[ShieldViewController alloc] init];
         }
             break;
         case PSFuncType_Addressee:{

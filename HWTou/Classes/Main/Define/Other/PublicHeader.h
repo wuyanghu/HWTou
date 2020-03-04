@@ -19,8 +19,8 @@
 #import "NSNotificationCenterMacro.h"
 #import "FileMacro.h"
 #import "Navigation.h"
-#import <NIMAVChat/NIMAVChat.h>
-#import <NIMSDK/NIMSDK.h>
+//#import <NIMAVChat/NIMAVChat.h>
+//#import <NIMSDK/NIMSDK.h>
 
 /**************************************************************/
 

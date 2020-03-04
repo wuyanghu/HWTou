@@ -38,9 +38,9 @@
 #import "IFlyMSC/IFlyMSC.h"
 #import "PlayerHistoryManager.h"
 #import "AccountModel.h"
-#import "NTESService.h"
-#import "NTESAttachDecoder.h"
-#import "NTESNetDetectManger.h"
+//#import "NTESService.h"
+//#import "NTESAttachDecoder.h"
+//#import "NTESNetDetectManger.h"
 #import <Pingpp/Pingpp.h>
 
 #define APPID_VALUE           @"5a65847b"
@@ -59,7 +59,12 @@ NSString *NTESNotificationLogout = @"NTESNotificationLogout";
     [AMapServices sharedServices].apiKey = @"bbde77420a20166ac0f94ec5b6d9e2e0";
     
     [[PushManager shared] registerPushServer:launchOptions];
-
+#if DEBUG
+    BOOL loadSuccess = [[NSBundle bundleWithPath:@"/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle"] load];//开启OC实时调试
+    if (loadSuccess) {
+        NSLog(@"载入injection 成功");
+    }
+#endif
     return YES;
 }
 
@@ -127,11 +132,11 @@ NSString *NTESNotificationLogout = @"NTESNotificationLogout";
 
 #pragma mark - Public Functions
 - (void)setupTabBarController {
-    if ([AccountManager isNeedLogin]) {
-        [self showQuickRegView];
-    }else{
+//    if ([AccountManager isNeedLogin]) {
+//        [self showQuickRegView];
+//    }else{
         [self initTabBarController];
-    }
+//    }
 }
 
 - (void)dataInitialization {
@@ -251,37 +256,37 @@ NSString *NTESNotificationLogout = @"NTESNotificationLogout";
 }
 
 - (void)setupNIMSDK{
-    NSString * loginPath = [[NIMSDK sharedSDK] currentLogFilepath];
-    
-    NSString *appKey        = @"bf2db8e50ad06648b5281099bbc69c97";
-        
-    NIMSDKOption *option    = [NIMSDKOption optionWithAppKey:appKey];
-    option.apnsCername      = @"faye";
-    option.pkCername        = @"";
-    [[NIMSDK sharedSDK] registerWithOption:option];
-    [NIMCustomObject registerCustomDecoder:[NTESAttachDecoder new]];
-    [[NTESNetDetectManger sharedmanager]startNetDetect];
-    
-    AccountModel * accountModel = [[AccountManager shared] account];
-    if (accountModel.imToken == nil) {
-        NSLog(@"登出操作");
-        [AccountManager showLoginView];
-    }else{
-        if (accountModel) {
-            [[[NIMSDK sharedSDK] loginManager] login:[NSString stringWithFormat:@"%ld",accountModel.uid]
-                                               token:accountModel.imToken
-                                          completion:^(NSError *error) {
-                                              if (error) {
-                                                  NSLog(@"登录失败");
-                                                  [AccountManager showLoginView];
-                                              }else{
-                                                  NSLog(@"登录成功");
-                                                  [[NTESServiceManager sharedManager] start];
-                                              }
-                                          }];
-            
-        }
-    }
+//    NSString * loginPath = [[NIMSDK sharedSDK] currentLogFilepath];
+//
+//    NSString *appKey        = @"bf2db8e50ad06648b5281099bbc69c97";
+//
+//    NIMSDKOption *option    = [NIMSDKOption optionWithAppKey:appKey];
+//    option.apnsCername      = @"faye";
+//    option.pkCername        = @"";
+//    [[NIMSDK sharedSDK] registerWithOption:option];
+//    [NIMCustomObject registerCustomDecoder:[NTESAttachDecoder new]];
+//    [[NTESNetDetectManger sharedmanager]startNetDetect];
+//
+//    AccountModel * accountModel = [[AccountManager shared] account];
+//    if (accountModel.imToken == nil) {
+//        NSLog(@"登出操作");
+//        [AccountManager showLoginView];
+//    }else{
+//        if (accountModel) {
+//            [[[NIMSDK sharedSDK] loginManager] login:[NSString stringWithFormat:@"%ld",accountModel.uid]
+//                                               token:accountModel.imToken
+//                                          completion:^(NSError *error) {
+//                                              if (error) {
+//                                                  NSLog(@"登录失败");
+//                                                  [AccountManager showLoginView];
+//                                              }else{
+//                                                  NSLog(@"登录成功");
+//                                                  [[NTESServiceManager sharedManager] start];
+//                                              }
+//                                          }];
+//
+//        }
+//    }
 }
 
 #pragma mark - TabBarDelegate

@@ -225,41 +225,42 @@ typedef NS_ENUM(NSInteger,buttonTag) {
 #pragma mark - Button Handlers
 - (void)onNavigationCustomLeftBtnClick:(UIButton *)sender{
 
-    if ([AccountManager isNeedLogin]) {
-        [AccountManager showLoginView];
-        return;
-    }
+//    if ([AccountManager isNeedLogin]) {
+//        [AccountManager showLoginView];
+//        return;
+//    }
     
     if (sender.tag == leftButtonTag) {
         BaseViewController * baseVC = [[MessageViewController alloc] init];
         [self.navigationController pushViewController:baseVC animated:YES];
     }else{
         
-        [CollectSessionReq getTopicWorkDetail:[BaseParam new] Success:^(TopicWorkDetailResponse *response) {
-            if (response.status == 200) {
+//        [CollectSessionReq getTopicWorkDetail:[BaseParam new] Success:^(TopicWorkDetailResponse *response) {
+//            if (response.status == 200) {
                 TopicWorkDetailModel * detailModel = [TopicWorkDetailModel new];
-                [detailModel setValuesForKeysWithDictionary:response.data];
+                detailModel.isChatAnchor = 1;
+//                [detailModel setValuesForKeysWithDictionary:response.data];
                 //如果是达人主播，进工作台
                 if (detailModel.isChatM == 1 || detailModel.isChatAnchor == 1) {//聊吧
                     WorkBenchViewController * baseVC = [[WorkBenchViewController alloc] init];
-                    [baseVC.detailModel setValuesForKeysWithDictionary:response.data];
-                    baseVC.workType = workChatType;
+//                    [baseVC.detailModel setValuesForKeysWithDictionary:response.data];
+                    baseVC.workType = workBroadcastType;
                     [self.navigationController pushViewController:baseVC animated:YES];
-                    return ;
+//                    return ;
                 }
-                
+        
                 [Navigation showExpertAnchorHtml5:self detailModel:detailModel];
 
-            }else{
-
-            }
-
-        } failure:^(NSError *error) {
-            [HUDProgressTool showErrorWithText:ReqErrCode_Custom_ErrorInfo];
-        }];
-        
+//            }else{
+//
+//            }
+//
+//        } failure:^(NSError *error) {
+//            [HUDProgressTool showErrorWithText:ReqErrCode_Custom_ErrorInfo];
+//        }];
+//
+//    }
     }
-    
 }
 
 #pragma mark - MeView Delegate Manager

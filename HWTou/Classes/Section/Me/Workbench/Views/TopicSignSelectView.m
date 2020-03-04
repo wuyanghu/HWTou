@@ -28,11 +28,21 @@
 
 - (instancetype)initWithLabelListArray:(NSArray *)array {
     if (self = [super init]) {
+        TopicLabelListModel * model =
+        [[TopicLabelListModel alloc] initWithLabelId:@"1" labelName:@"问题"];
         
-        self.dataArr = array;
+        TopicLabelListModel * model1 =
+        [[TopicLabelListModel alloc] initWithLabelId:@"1" labelName:@"问题"];
+        TopicLabelListModel * model2 =
+        [[TopicLabelListModel alloc] initWithLabelId:@"1" labelName:@"问题"];
+        TopicLabelListModel * model3 =
+        [[TopicLabelListModel alloc] initWithLabelId:@"1" labelName:@"问题"];
+        TopicLabelListModel * model4 =
+        [[TopicLabelListModel alloc] initWithLabelId:@"1" labelName:@"问题"];
+        self.dataArr = @[model,model1,model2,model3,model4];
         
         VIEW_WIDTH = 320.f;
-        CONTENT_HEIGHT = array.count/2 * 60 + 44 + 20;
+        CONTENT_HEIGHT = self.dataArr.count/2 * 60 + 44 + 20;
         VIEW_HEIGHT = CONTENT_HEIGHT > kMainScreenHeight - 200 ? kMainScreenHeight - 200 : CONTENT_HEIGHT;
         [self setupSubviews];
     }

@@ -53,20 +53,20 @@
 //直播
 #import "GuessULikeModel.h"
 #import "GetChatInfoModel.h"
-#import "NTESAnchorLiveViewController.h"
-#import "NTESDemoService.h"
+//#import "NTESAnchorLiveViewController.h"
+//#import "NTESDemoService.h"
 #import "SVProgressHUD.h"
 #import "UIView+Toast.h"
-#import "NTESLiveManager.h"
-#import "NSDictionary+NTESJson.h"
-#import "NTESCustomKeyDefine.h"
-#import "NTESLiveUtil.h"
+//#import "NTESLiveManager.h"
+//#import "NSDictionary+NTESJson.h"
+//#import "NTESCustomKeyDefine.h"
+//#import "NTESLiveUtil.h"
 #import "RotRequest.h"
 
-#import "NTESBundleSetting.h"
-#import "NTESChatroomManager.h"
-#import "NTESLiveViewController.h"
-#import "NTESAudienceLiveViewController.h"
+//#import "NTESBundleSetting.h"
+//#import "NTESChatroomManager.h"
+//#import "NTESLiveViewController.h"
+//#import "NTESAudienceLiveViewController.h"
 #import "AccountManager.h"
 #import "SaveRoomInfoModel.h"
 #import "HUDProgressTool.h"
@@ -83,208 +83,208 @@ extern BOOL enteringChatroom = NO;
 //进行主播
 //进入直播
 + (void)joinPushLiveRoom:(UIViewController *)from model:(GuessULikeModel *)model{
-    [NTESLiveManager sharedInstance].type = NIMNetCallMediaTypeAudio;
-    [NTESLiveManager sharedInstance].liveQuality = NTESLiveQualityNormal;
-    [NTESLiveManager sharedInstance].role = NTESLiveRoleAnchor;
-    __weak typeof(from) wself = from;
-    NSString *errorToast = @"进入失败，请重试";
-    
-    [SVProgressHUD show];
-    
-    NTESLiveManager * liveManager = [NTESLiveManager sharedInstance];
-    [liveManager setMeetingName:[NSUUID UUID].UUIDString];
-    GetChatInfoParam * infoParam = [GetChatInfoParam new];
-    infoParam.rtcId = model.rtcId;
-    [RotRequest getChatInfo:infoParam Success:^(DictResponse *response) {
-        [SVProgressHUD dismiss];
-        
-        if (response.status == 200) {
-            GetChatInfoModel * chatInfoModel = [GetChatInfoModel new];
-            [chatInfoModel setValuesForKeysWithDictionary:response.data];
-            
-            NIMChatroom *chatroom = [[NIMChatroom alloc] init];
-            chatroom.roomId  = [NSString stringWithFormat:@"%ld",model.roomId];
-            chatroom.name    = chatInfoModel.chatName;
-            chatroom.creator = [[AccountManager shared] account].userName;
-            chatroom.announcement = chatInfoModel.chatContent;
-            chatroom.onlineUserCount = chatInfoModel.lookNum;
-            
-            SaveRoomInfoParam * saveRoomInfoParam = [SaveRoomInfoParam new];
-            saveRoomInfoParam.rtcId = model.rtcId;
-            saveRoomInfoParam.acType = 1;
-            saveRoomInfoParam.roomName = liveManager.meetingName;
-            
-            [RotRequest saveRoomInfo:saveRoomInfoParam Success:^(DictResponse *response) {
-                if (response.status == 200) {
-                    SaveRoomInfoModel * saveRoomInfoModel = [SaveRoomInfoModel new];
-                    [saveRoomInfoModel setValuesForKeysWithDictionary:response.data];
-                    saveRoomInfoModel.isSuperManager = model.isSuperManager;
-                    
-                    NSString *liveUrl = saveRoomInfoModel.pushUrl;
-                    NSString *pullUrl = saveRoomInfoModel.rtmpPullUrl;
-                    
-                    NSDictionary * liveDic = @{@"pushUrl" : liveUrl,
-                                               @"pullUrl": pullUrl};
-                    chatroom.ext = [NTESLiveUtil dataTojsonString:liveDic];
-                    
-                    if (liveUrl.length) {
-                        chatroom.broadcastUrl = liveUrl;
-                    }
-                    
-                    NIMChatroomEnterRequest *request = [[NIMChatroomEnterRequest alloc] init];
-                    request.roomId = chatroom.roomId;
-                    request.roomNotifyExt = [@{
-                                               NTESCMType  : @([NTESLiveManager sharedInstance].type),
-                                               NTESCMMeetingName: liveManager.meetingName
-                                               } jsonBody];
-                    
-                    [[NIMSDK sharedSDK].chatroomManager enterChatroom:request completion:^(NSError *error, NIMChatroom *room, NIMChatroomMember *me) {
-                        [SVProgressHUD dismiss];
-                        if (!error) {
-                            //这里拿到的是应用服务器的人数，没有把自己加进去，手动添加。
-                            chatroom.onlineUserCount++;
-                            //将room的扩展也加进去
-                            chatroom.ext =[NTESLiveUtil jsonString:chatroom.ext addJsonString:request.roomNotifyExt];
-                            
-                            [[NTESLiveManager sharedInstance] cacheMyInfo:me roomId:request.roomId];
-                            [[NTESLiveManager sharedInstance] cacheChatroom:chatroom];
-                            
-                            NTESAnchorLiveViewController *vc = [[NTESAnchorLiveViewController alloc]initWithChatroom:chatroom saveRoomInfoModel:saveRoomInfoModel chatInfoModel:chatInfoModel];
-                            vc.rtcId = model.rtcId;
-                            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                            [nav setNavigationBarHidden:YES animated:YES];
-                            [from presentViewController:nav animated:YES completion:nil];
-                            
-                        }
-                        else
-                        {
-                            DDLogError(@"enter chat room error , code : %zd",error.code);
-                            [wself.view makeToast:errorToast duration:2.0 position:CSToastPositionCenter];
-                        }
-                    }];
-                }else{
-                    [wself.view makeToast:response.msg duration:2.0 position:CSToastPositionCenter];
-                }
-            } failure:^(NSError *error) {
-                [wself.view makeToast:@"网络繁忙" duration:2.0 position:CSToastPositionCenter];
-            }];
-            
-        }else{
-            [wself.view makeToast:errorToast duration:2.0 position:CSToastPositionCenter];
-        }
-    } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        DDLogError(@"request stream error , code : %zd",error.code);
-        [wself.view makeToast:errorToast duration:2.0 position:CSToastPositionCenter];
-    }];
+//    [NTESLiveManager sharedInstance].type = NIMNetCallMediaTypeAudio;
+//    [NTESLiveManager sharedInstance].liveQuality = NTESLiveQualityNormal;
+//    [NTESLiveManager sharedInstance].role = NTESLiveRoleAnchor;
+//    __weak typeof(from) wself = from;
+//    NSString *errorToast = @"进入失败，请重试";
+//
+//    [SVProgressHUD show];
+//
+//    NTESLiveManager * liveManager = [NTESLiveManager sharedInstance];
+//    [liveManager setMeetingName:[NSUUID UUID].UUIDString];
+//    GetChatInfoParam * infoParam = [GetChatInfoParam new];
+//    infoParam.rtcId = model.rtcId;
+//    [RotRequest getChatInfo:infoParam Success:^(DictResponse *response) {
+//        [SVProgressHUD dismiss];
+//
+//        if (response.status == 200) {
+//            GetChatInfoModel * chatInfoModel = [GetChatInfoModel new];
+//            [chatInfoModel setValuesForKeysWithDictionary:response.data];
+//
+//            NIMChatroom *chatroom = [[NIMChatroom alloc] init];
+//            chatroom.roomId  = [NSString stringWithFormat:@"%ld",model.roomId];
+//            chatroom.name    = chatInfoModel.chatName;
+//            chatroom.creator = [[AccountManager shared] account].userName;
+//            chatroom.announcement = chatInfoModel.chatContent;
+//            chatroom.onlineUserCount = chatInfoModel.lookNum;
+//
+//            SaveRoomInfoParam * saveRoomInfoParam = [SaveRoomInfoParam new];
+//            saveRoomInfoParam.rtcId = model.rtcId;
+//            saveRoomInfoParam.acType = 1;
+//            saveRoomInfoParam.roomName = liveManager.meetingName;
+//
+//            [RotRequest saveRoomInfo:saveRoomInfoParam Success:^(DictResponse *response) {
+//                if (response.status == 200) {
+//                    SaveRoomInfoModel * saveRoomInfoModel = [SaveRoomInfoModel new];
+//                    [saveRoomInfoModel setValuesForKeysWithDictionary:response.data];
+//                    saveRoomInfoModel.isSuperManager = model.isSuperManager;
+//
+//                    NSString *liveUrl = saveRoomInfoModel.pushUrl;
+//                    NSString *pullUrl = saveRoomInfoModel.rtmpPullUrl;
+//
+//                    NSDictionary * liveDic = @{@"pushUrl" : liveUrl,
+//                                               @"pullUrl": pullUrl};
+//                    chatroom.ext = [NTESLiveUtil dataTojsonString:liveDic];
+//
+//                    if (liveUrl.length) {
+//                        chatroom.broadcastUrl = liveUrl;
+//                    }
+//
+//                    NIMChatroomEnterRequest *request = [[NIMChatroomEnterRequest alloc] init];
+//                    request.roomId = chatroom.roomId;
+//                    request.roomNotifyExt = [@{
+//                                               NTESCMType  : @([NTESLiveManager sharedInstance].type),
+//                                               NTESCMMeetingName: liveManager.meetingName
+//                                               } jsonBody];
+//
+//                    [[NIMSDK sharedSDK].chatroomManager enterChatroom:request completion:^(NSError *error, NIMChatroom *room, NIMChatroomMember *me) {
+//                        [SVProgressHUD dismiss];
+//                        if (!error) {
+//                            //这里拿到的是应用服务器的人数，没有把自己加进去，手动添加。
+//                            chatroom.onlineUserCount++;
+//                            //将room的扩展也加进去
+//                            chatroom.ext =[NTESLiveUtil jsonString:chatroom.ext addJsonString:request.roomNotifyExt];
+//
+//                            [[NTESLiveManager sharedInstance] cacheMyInfo:me roomId:request.roomId];
+//                            [[NTESLiveManager sharedInstance] cacheChatroom:chatroom];
+//
+//                            NTESAnchorLiveViewController *vc = [[NTESAnchorLiveViewController alloc]initWithChatroom:chatroom saveRoomInfoModel:saveRoomInfoModel chatInfoModel:chatInfoModel];
+//                            vc.rtcId = model.rtcId;
+//                            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//                            [nav setNavigationBarHidden:YES animated:YES];
+//                            [from presentViewController:nav animated:YES completion:nil];
+//
+//                        }
+//                        else
+//                        {
+//                            DDLogError(@"enter chat room error , code : %zd",error.code);
+//                            [wself.view makeToast:errorToast duration:2.0 position:CSToastPositionCenter];
+//                        }
+//                    }];
+//                }else{
+//                    [wself.view makeToast:response.msg duration:2.0 position:CSToastPositionCenter];
+//                }
+//            } failure:^(NSError *error) {
+//                [wself.view makeToast:@"网络繁忙" duration:2.0 position:CSToastPositionCenter];
+//            }];
+//
+//        }else{
+//            [wself.view makeToast:errorToast duration:2.0 position:CSToastPositionCenter];
+//        }
+//    } failure:^(NSError *error) {
+//        [SVProgressHUD dismiss];
+//        DDLogError(@"request stream error , code : %zd",error.code);
+//        [wself.view makeToast:errorToast duration:2.0 position:CSToastPositionCenter];
+//    }];
 }
 
 //观看直播
 + (void)lookLiveRoom:(UIViewController *)from model:(GuessULikeModel *)model
 {
-    if ([AccountManager isNeedLogin]) {
-        [AccountManager showLoginView];
-        return;
-    }
-    
-    [NTESLiveManager sharedInstance].type = NIMNetCallMediaTypeAudio;
-    [NTESLiveManager sharedInstance].liveQuality = NTESLiveQualityNormal;
-    [NTESLiveManager sharedInstance].role = NTESLiveRoleAudience;
-    
-    [SVProgressHUD show];
-    __weak typeof(from) wself = from;
-    NSString *errorToast = @"进入失败，请重试";
-    
-    GetChatInfoParam * infoParam = [GetChatInfoParam new];
-    infoParam.rtcId = model.rtcId;
-    [RotRequest getChatInfo:infoParam Success:^(DictResponse *response) {
-        [SVProgressHUD dismiss];
-        
-        if (response.status == 200) {
-            GetChatInfoModel * chatInfoModel = [GetChatInfoModel new];
-            [chatInfoModel setValuesForKeysWithDictionary:response.data];
-            
-            [NTESLiveManager sharedInstance].orientation = NIMVideoOrientationPortrait;
-            [NTESLiveManager sharedInstance].type = NIMNetCallMediaTypeAudio;
-
-            if (chatInfoModel.isAnchor == 1) {//有主播
-                NSLog(@"有直播");
-                GetChatInfoParam * chatInfoParam = [GetChatInfoParam new];
-                chatInfoParam.rtcId = model.rtcId;
-                [RotRequest getRoomInfo:chatInfoParam Success:^(DictResponse *response) {
-                    if (response.status == 200) {
-                        SaveRoomInfoModel * roomInfoModel = [SaveRoomInfoModel new];
-                        [roomInfoModel setValuesForKeysWithDictionary:response.data];
-                        roomInfoModel.isSuperManager = model.isSuperManager;
-                        //这里拿到的是应用服务器的人数，没有把自己加进去，手动添加。
-                        
-                        NTESAudienceLiveViewController *vc = [[NTESAudienceLiveViewController alloc] initWithChatroomId:[NSString stringWithFormat:@"%ld",model.roomId] streamUrl:roomInfoModel.rtmpPullUrl roomInfoModel:roomInfoModel chatInfoModel:chatInfoModel];
-                        vc.rtcId = model.rtcId;
-                        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                        [nav setNavigationBarHidden:YES animated:YES];
-                        [wself presentViewController:nav animated:YES completion:nil];
-                    }
-                } failure:^(NSError *error) {
-                    [wself.view makeToast:errorToast duration:2.0 position:CSToastPositionCenter];
-                }];
-            }else{//没有直播
-                NSLog(@"没有直播");
-                SaveRoomInfoModel * roomInfoModel = [SaveRoomInfoModel new];
-                roomInfoModel.isSuperManager = model.isSuperManager;
-                roomInfoModel.chatId = model.rtcId;
-                NTESAudienceLiveViewController *vc = [[NTESAudienceLiveViewController alloc] initWithChatroomId:[NSString stringWithFormat:@"%ld",model.roomId] streamUrl:nil roomInfoModel:roomInfoModel chatInfoModel:chatInfoModel];
-                vc.rtcId = model.rtcId;
-                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                [nav setNavigationBarHidden:YES animated:YES];
-                [wself presentViewController:nav animated:YES completion:nil];
-                
-            }
-            
-        }else{
-            [wself.view makeToast:response.msg duration:1.0 position:CSToastPositionCenter];
-        }
-    } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        DDLogError(@"request stream error , code : %zd",error.code);
-        [wself.view makeToast:errorToast duration:1.0 position:CSToastPositionCenter];
-    }];
+//    if ([AccountManager isNeedLogin]) {
+//        [AccountManager showLoginView];
+//        return;
+//    }
+//
+//    [NTESLiveManager sharedInstance].type = NIMNetCallMediaTypeAudio;
+//    [NTESLiveManager sharedInstance].liveQuality = NTESLiveQualityNormal;
+//    [NTESLiveManager sharedInstance].role = NTESLiveRoleAudience;
+//
+//    [SVProgressHUD show];
+//    __weak typeof(from) wself = from;
+//    NSString *errorToast = @"进入失败，请重试";
+//
+//    GetChatInfoParam * infoParam = [GetChatInfoParam new];
+//    infoParam.rtcId = model.rtcId;
+//    [RotRequest getChatInfo:infoParam Success:^(DictResponse *response) {
+//        [SVProgressHUD dismiss];
+//
+//        if (response.status == 200) {
+//            GetChatInfoModel * chatInfoModel = [GetChatInfoModel new];
+//            [chatInfoModel setValuesForKeysWithDictionary:response.data];
+//
+//            [NTESLiveManager sharedInstance].orientation = NIMVideoOrientationPortrait;
+//            [NTESLiveManager sharedInstance].type = NIMNetCallMediaTypeAudio;
+//
+//            if (chatInfoModel.isAnchor == 1) {//有主播
+//                NSLog(@"有直播");
+//                GetChatInfoParam * chatInfoParam = [GetChatInfoParam new];
+//                chatInfoParam.rtcId = model.rtcId;
+//                [RotRequest getRoomInfo:chatInfoParam Success:^(DictResponse *response) {
+//                    if (response.status == 200) {
+//                        SaveRoomInfoModel * roomInfoModel = [SaveRoomInfoModel new];
+//                        [roomInfoModel setValuesForKeysWithDictionary:response.data];
+//                        roomInfoModel.isSuperManager = model.isSuperManager;
+//                        //这里拿到的是应用服务器的人数，没有把自己加进去，手动添加。
+//
+//                        NTESAudienceLiveViewController *vc = [[NTESAudienceLiveViewController alloc] initWithChatroomId:[NSString stringWithFormat:@"%ld",model.roomId] streamUrl:roomInfoModel.rtmpPullUrl roomInfoModel:roomInfoModel chatInfoModel:chatInfoModel];
+//                        vc.rtcId = model.rtcId;
+//                        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//                        [nav setNavigationBarHidden:YES animated:YES];
+//                        [wself presentViewController:nav animated:YES completion:nil];
+//                    }
+//                } failure:^(NSError *error) {
+//                    [wself.view makeToast:errorToast duration:2.0 position:CSToastPositionCenter];
+//                }];
+//            }else{//没有直播
+//                NSLog(@"没有直播");
+//                SaveRoomInfoModel * roomInfoModel = [SaveRoomInfoModel new];
+//                roomInfoModel.isSuperManager = model.isSuperManager;
+//                roomInfoModel.chatId = model.rtcId;
+//                NTESAudienceLiveViewController *vc = [[NTESAudienceLiveViewController alloc] initWithChatroomId:[NSString stringWithFormat:@"%ld",model.roomId] streamUrl:nil roomInfoModel:roomInfoModel chatInfoModel:chatInfoModel];
+//                vc.rtcId = model.rtcId;
+//                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//                [nav setNavigationBarHidden:YES animated:YES];
+//                [wself presentViewController:nav animated:YES completion:nil];
+//
+//            }
+//
+//        }else{
+//            [wself.view makeToast:response.msg duration:1.0 position:CSToastPositionCenter];
+//        }
+//    } failure:^(NSError *error) {
+//        [SVProgressHUD dismiss];
+//        DDLogError(@"request stream error , code : %zd",error.code);
+//        [wself.view makeToast:errorToast duration:1.0 position:CSToastPositionCenter];
+//    }];
     
 }
 
 //进入聊天室
 + (void)joinChatRoom:(UIViewController *)from model:(GuessULikeModel *)model{
-    if (enteringChatroom) {
-        return;
-    }
-    
-    NIMUser *user = [[NIMSDK sharedSDK].userManager userInfo:[NIMSDK sharedSDK].loginManager.currentAccount];
-    NIMChatroomEnterRequest *request = [[NIMChatroomEnterRequest alloc] init];
-    request.roomId = [NSString stringWithFormat:@"%ld",model.roomId];
-    request.roomNickname = user.userInfo.nickName;
-    request.roomAvatar = user.userInfo.avatarUrl;
-    request.retryCount = [[NTESBundleSetting sharedConfig] chatroomRetryCount];
-    [SVProgressHUD show];
-    enteringChatroom = YES;
-    __weak typeof(from) wself = from;
-    [[[NIMSDK sharedSDK] chatroomManager] enterChatroom:request
-                                             completion:^(NSError *error,NIMChatroom *chatroom,NIMChatroomMember *me) {
-                                                 [SVProgressHUD dismiss];
-                                                 enteringChatroom = NO;
-                                                 if (error == nil)
-                                                 {
-                                                     [[NTESChatroomManager sharedInstance] cacheMyInfo:me roomId:chatroom.roomId];
-                                                     
-                                                     NTESLiveViewController *vc = [[NTESLiveViewController alloc] initWithChatroom:chatroom];
-                                                     [from.navigationController pushViewController:vc animated:YES];
-                                                 }
-                                                 else
-                                                 {
-                                                     NSString *toast = [NSString stringWithFormat:@"进入失败 code:%zd",error.code];
-                                                     [wself.view makeToast:toast duration:2.0 position:CSToastPositionCenter];
-                                                     DDLogError(@"enter room %@ failed %@",chatroom.roomId,error);
-                                                 }
-                                                 
-                                             }];
+//    if (enteringChatroom) {
+//        return;
+//    }
+//    
+//    NIMUser *user = [[NIMSDK sharedSDK].userManager userInfo:[NIMSDK sharedSDK].loginManager.currentAccount];
+//    NIMChatroomEnterRequest *request = [[NIMChatroomEnterRequest alloc] init];
+//    request.roomId = [NSString stringWithFormat:@"%ld",model.roomId];
+//    request.roomNickname = user.userInfo.nickName;
+//    request.roomAvatar = user.userInfo.avatarUrl;
+//    request.retryCount = [[NTESBundleSetting sharedConfig] chatroomRetryCount];
+//    [SVProgressHUD show];
+//    enteringChatroom = YES;
+//    __weak typeof(from) wself = from;
+//    [[[NIMSDK sharedSDK] chatroomManager] enterChatroom:request
+//                                             completion:^(NSError *error,NIMChatroom *chatroom,NIMChatroomMember *me) {
+//                                                 [SVProgressHUD dismiss];
+//                                                 enteringChatroom = NO;
+//                                                 if (error == nil)
+//                                                 {
+//                                                     [[NTESChatroomManager sharedInstance] cacheMyInfo:me roomId:chatroom.roomId];
+//                                                     
+//                                                     NTESLiveViewController *vc = [[NTESLiveViewController alloc] initWithChatroom:chatroom];
+//                                                     [from.navigationController pushViewController:vc animated:YES];
+//                                                 }
+//                                                 else
+//                                                 {
+//                                                     NSString *toast = [NSString stringWithFormat:@"进入失败 code:%zd",error.code];
+//                                                     [wself.view makeToast:toast duration:2.0 position:CSToastPositionCenter];
+//                                                     DDLogError(@"enter room %@ failed %@",chatroom.roomId,error);
+//                                                 }
+//                                                 
+//                                             }];
 }
 
 #pragma mark - Record

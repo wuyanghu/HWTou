@@ -35,7 +35,11 @@ target 'HWTou' do
     pod 'GBigbang'
     
     #######网易sdk
-    pod 'NIMKit/Full'
+    pod 'M80AttributedLabel', '1.6.3'
+    pod 'Toast','3.1.0'
+    
+    pod 'NIMKit', '2.11.3'
+#    pod 'NIMKit/Full'
     pod 'FMDB', '~> 2.7.2'
     pod 'Reachability', '~> 3.2'
     pod 'CocoaLumberjack', '~> 3.2.1'

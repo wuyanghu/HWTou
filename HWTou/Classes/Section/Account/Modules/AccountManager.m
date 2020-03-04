@@ -18,7 +18,7 @@
 #import <UIKit/UIKit.h>
 #import "VisitorRequest.h"
 #import "PublicHeader.h"
-#import "NTESService.h"
+//#import "NTESService.h"
 
 @interface AccountManager ()
 
@@ -94,23 +94,23 @@ SingletonM();
 + (void)setLoginNim:(NSString *)account imtoken:(NSString *)token{
 
     //如果有缓存用户名密码推荐使用自动登录
-    if ([account length] && [token length])
-    {
-        NIMAutoLoginData *loginData = [[NIMAutoLoginData alloc] init];
-        loginData.account = account;
-        loginData.token = token;
-        
-        [[[NIMSDK sharedSDK] loginManager] login:account token:token completion:^(NSError * _Nullable error) {
-            if (error) {
-                NSLog(@"登录失败");
-                [self showLoginView];
-            }else{
-                NSLog(@"登录成功");
-                [[NTESServiceManager sharedManager] start];
-            }
-            
-        }];
-    }
+//    if ([account length] && [token length])
+//    {
+//        NIMAutoLoginData *loginData = [[NIMAutoLoginData alloc] init];
+//        loginData.account = account;
+//        loginData.token = token;
+//        
+//        [[[NIMSDK sharedSDK] loginManager] login:account token:token completion:^(NSError * _Nullable error) {
+//            if (error) {
+//                NSLog(@"登录失败");
+//                [self showLoginView];
+//            }else{
+//                NSLog(@"登录成功");
+//                [[NTESServiceManager sharedManager] start];
+//            }
+//            
+//        }];
+//    }
     
 }
 

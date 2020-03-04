@@ -33,6 +33,15 @@
 @end
 
 @implementation TopicLabelListModel
+
+- (id)initWithLabelId:(NSString *)labelId labelName:(NSString *)labelName{
+    self = [super init];
+    if (self) {
+        _labelId = labelId;
+        _labelName = labelName;
+    }
+    return self;
+}
 @end
 
 @implementation TopicBannerListModel
